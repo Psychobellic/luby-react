@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import Content from './components/Content';
 
 const PageWrapper = styled.div`
   border: 0;
@@ -13,10 +14,11 @@ const PageWrapper = styled.div`
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-    </div>
-  );
+		<PageWrapper className="App">
+			<Navbar />
+			<Content />
+		</PageWrapper>
+	);
 }
 
 export default App;
