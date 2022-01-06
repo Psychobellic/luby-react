@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+
+export interface Props {
+  userName: string
+}
+
 const Greeting = styled.h1`
 	font-family: Poppins;
 	font-style: normal;
@@ -11,8 +16,8 @@ const Greeting = styled.h1`
 	letter-spacing: -0.02em;
 	color: #495057;
 `;
-const ContentHeader = ({name}) => {
-  return <Greeting>Bem-vindo, {name}</Greeting>;
-}
+const ContentHeader = ({ userName }: Props) => {
+	return <Greeting>Bem-vindo, {userName}</Greeting>;
+};
 
 export default ContentHeader;

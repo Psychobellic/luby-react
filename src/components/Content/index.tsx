@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import Cards from "../Cards";
 import ContentHeader from "../ContentHeader";
+import ContentSubHeader from "../ContentSubHeader";
 
 
 const BodyWrapper = styled.div`
@@ -17,7 +19,9 @@ const Content = () => {
   return (
   <BodyWrapper>
 			<Body>
-				<ContentHeader name={'Carlos'} />
+				<ContentHeader userName={'Carlos'} />
+        <ContentSubHeader />
+        <Cards />
 			</Body>
 		</BodyWrapper>
   )
