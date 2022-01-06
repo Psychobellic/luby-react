@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import styled from "styled-components";
 import ChryslerSVG from '../../img/chrysler_sport';
 import EmployeeSVG from '../../img/employee';
