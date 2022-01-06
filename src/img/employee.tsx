@@ -6,7 +6,7 @@ const SVG = styled.svg`
 
 const EmployeeSVG = () => {
 return (
-	<SVG width="258" height="200" viewBox="0 0 258 200" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+	<SVG width="258" height="200" viewBox="0 0 258 200" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" >
 <path d="M0 0H255C256.657 0 258 1.34315 258 3V197C258 198.657 256.657 200 255 200H0V0Z" fill="#C4C4C4"/>
 <path d="M0 0H255C256.657 0 258 1.34315 258 3V197C258 198.657 256.657 200 255 200H0V0Z" fill="url(#pattern0)"/>
 <defs>

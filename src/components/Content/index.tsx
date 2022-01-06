@@ -5,11 +5,11 @@ import ContentSubHeader from "../ContentSubHeader";
 
 
 const BodyWrapper = styled.div`
-  width: 100vw;
+  width: 50rem;
 `;
 
 const Body = styled.div`
-	width: 50rem;
+	width: 100%;
 	height: 46.6875rem;
   margin-left: 35%;
 `;
