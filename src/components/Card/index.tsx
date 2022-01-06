@@ -2,17 +2,14 @@ import styled from "styled-components";
 
 const CardWrap = styled.div`
 	height: 12.5rem;
-	width: 50rem;
-	display: flex;
-	flex-direction: row;
-	margin-top: 20px;
+  width: 50rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 const TextWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100%;
- 
+  flex-direction: columns;
 `;
 
 const Title = styled.h3`
