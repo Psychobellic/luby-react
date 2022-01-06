@@ -9,6 +9,9 @@ const SearchWrapper = styled.form`
 	background: #f9f9f9;
 	border: 1px solid #e6e6e6;
 	box-sizing: border-box;
+	align-items: center;
+	justify-content: space-around;
+	text-align: center;
 `;
 
 const SearchInput = styled.input`
@@ -24,12 +27,25 @@ const SearchInput = styled.input`
   }
 `;
 
+const Button = styled.button`
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
 
 const SearchBar = () => {
-	return <SearchWrapper>
-    <SearchInput />
-    <SearchIcon />
-  </SearchWrapper>;
+	return (
+		<SearchWrapper>
+			<SearchInput />
+			<Button type='submit'>
+				<SearchIcon />
+			</Button>
+		</SearchWrapper>
+	);
 };
 
 export default SearchBar;

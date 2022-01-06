@@ -3,9 +3,8 @@ import styled from "styled-components";
 const SVG = styled.svg`
 	width: 1.25rem;
 	height: 1.25rem;
-	transform: translate(50%, 50%)
+	padding-right: 12px;
 `;
-
 
 const SearchIcon = () => {
 return (

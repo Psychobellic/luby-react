@@ -3,13 +3,16 @@ import styled from "styled-components";
 const CardWrap = styled.div`
 	height: 12.5rem;
   width: 50rem;
+	min-width: 50rem;
   display: flex;
   flex-direction: row;
+	padding-top: 20px;
 `;
 
 const TextWrap = styled.div`
-  display: flex;
-  flex-direction: columns;
+	display: flex;
+	flex-direction: column;
+	width: 33.875rem;
 `;
 
 const Title = styled.h3`
@@ -43,7 +46,7 @@ const Amount = styled.h5`
 	color: #f54a48;
 `;
 
-const Image = styled.div`
+const Image = styled.img`
 	width: 33.875rem;
   height: 100%;
 `;
@@ -53,17 +56,17 @@ export interface Props {
 	title: string
 	subTitle: string
 	amount: string
-	image: Object
+	image: string
 }
-const Card = ({ title, subTitle, amount, image }: Props) => {
+const Card = (props: Props) => {
   return (
 		<CardWrap>
 			<TextWrap>
-				<Title>{title}</Title>
-				<SubTitle>{subTitle}</SubTitle>
-				<Amount>{amount}</Amount>
+				<Title>{props.title}</Title>
+				<SubTitle>{props.subTitle}</SubTitle>
+				<Amount>{props.amount}</Amount>
 			</TextWrap>
-			<Image>{image}</Image>
+			<Image src={props.image}/>
 		</CardWrap>
 	);
 }
