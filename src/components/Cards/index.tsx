@@ -6,6 +6,7 @@ import Card from "../Card";
 const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+	height: auto;
 `;
 
 const Cards = () => {

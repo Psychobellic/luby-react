@@ -5,21 +5,20 @@ const CardWrap = styled.div`
 	width: 50rem;
 	display: flex;
 	flex-direction: row;
-	padding-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 
 	&:hover {
 		transition: 0.2s;
 		transition-timing-function: ease-in-out;
 		transform: scale(105%);
 	}
-
 `;
 
 const TextWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 33.875rem;
-	max-height: 5rem;
 `;
 
 const Title = styled.h3`
