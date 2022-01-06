@@ -4,8 +4,6 @@ import styled from "styled-components";
 import Card from "../Card";
 
 const CardsWrapper = styled.div`
-  height: 40rem;
-  width: 50rem;
   display: flex;
   flex-direction: column;
 `;
@@ -14,7 +12,6 @@ const Cards = () => {
   const [reserved, setReserved] = useState('147 VEÍCULOS');
   const [list, setList] = useState('180 VEÍCULOS');
   const [employees, setEmployees] = useState('147 FUNCIONÁRIOS');
-
 
   return (
 		<CardsWrapper>
@@ -40,7 +37,5 @@ const Cards = () => {
 	);
 
 }
-
-
 
 export default Cards 

@@ -1,56 +1,62 @@
 import styled from "styled-components";
 
 const CardWrap = styled.div`
-	height: 12.5rem;
-  width: 50rem;
-	min-width: 50rem;
-  display: flex;
-  flex-direction: row;
+	height: auto;
+	width: 50rem;
+	display: flex;
+	flex-direction: row;
 	padding-top: 20px;
+
+	&:hover {
+		transition: 0.2s;
+		transition-timing-function: ease-in-out;
+		transform: scale(105%);
+	}
+
 `;
 
 const TextWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 33.875rem;
+	max-height: 5rem;
 `;
 
 const Title = styled.h3`
-	height: 2.4375rem;
+	height: 1rem;
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 1.625rem;
-	line-height: 2.4375rem;
 	letter-spacing: -0.02em;
 	color: #495057;
 `;
 
 const SubTitle = styled.h4`
+	height: 1rem;
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 500;
-  line-height: 1.6875rem;
-  font-size: 1.125rem;
+	font-size: 1.125rem;
 	color: #858585;
 `;
 
 const Amount = styled.h5`
+	height: 1rem;
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: bold;
 	letter-spacing: -0.02em;
 	text-transform: uppercase;
 	font-size: 0.8125rem;
-	line-height: 1.1875rem;
 	color: #f54a48;
+	align-self: flex-end;
 `;
 
 const Image = styled.img`
 	width: 33.875rem;
-  height: 100%;
+  height: 13rem;
 `;
-
 
 export interface Props {
 	title: string
@@ -58,6 +64,7 @@ export interface Props {
 	amount: string
 	image: string
 }
+
 const Card = (props: Props) => {
   return (
 		<CardWrap>

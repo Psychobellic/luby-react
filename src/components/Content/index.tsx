@@ -9,9 +9,9 @@ const BodyWrapper = styled.div`
 `;
 
 const Body = styled.div`
-	width: 50vw;
-	height: auto;
-  margin-left: 35vw;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
 `;
 
 
