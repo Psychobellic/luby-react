@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
-import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login'; 
+import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
+import userStore from '../redux/store'; 
+import { setUser } from '../redux/actions';
+
 
 
 function Login() {
@@ -37,6 +40,11 @@ function Login() {
 					.then((json) => {
 						setApiResponse(json);
 						console.log(apiResponse);
+						const unsubscribe = userStore.subscribe(() =>
+							userStore.dispatch(setUser(formData, json))
+						);
+						console.log(userStore.getState());
+						unsubscribe();
 					});
 			} catch (error) {
 				alert(error);
