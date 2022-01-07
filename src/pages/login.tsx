@@ -1,15 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
-import {	userReducer	} from '../reducers/userReducer';
-import { RootState } from '../reducers/userStore';
-
-
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login'; 
 
 
 function Login() {
-	const { user }: any = useSelector( (state: RootState) => state.user); 
 	const dispatch = useDispatch();
 	const [apiResponse, setApiResponse] = useState({});
 	const [remember, setRemember] = useState(false);
@@ -32,23 +27,26 @@ function Login() {
 		if (isValid !== true) {
 			alert('Form input invalid') 
 		} else {
-			fetch('https://autoluby.dev.luby.com.br/login', {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
-			}).then(response => response.json()).then(json => {
-					setApiResponse(json);
-					console.log(apiResponse);
-					
-			});
-		}
-
+			try {
+				fetch('https://autoluby.dev.luby.com.br/login', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(formData),
+				})
+					.then((response) => response.json())
+					.then((json) => {
+						setApiResponse(json);
+						console.log(apiResponse);
+					});
+			} catch (error) {
+				alert(error);
+			}
+	} 
 	};
   
   const forgotPassword = () => {
 
   };
-
 
 	return (
 		<>
