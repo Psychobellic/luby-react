@@ -6,7 +6,7 @@ import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormI
 
 
 function Login() {
-
+	const [apiResponse, setApiResponse] = useState({});
 	const [remember, setRemember] = useState(false);
 
 	const handleClick = () => {
@@ -24,9 +24,22 @@ function Login() {
 
 		if (isValid !== true) {
 			alert('Form input invalid') 
+		} else {
+			fetch('https://autoluby.dev.luby.com.br/login', {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData),
+			}).then(response => response.json()).then(json => {
+				json.forEach(entry => {
+					setApiResponse(apiResponse && entry);
+				})
+				
+			});
 		}
+		
 
-		console.log(formData);
+
+		console.log(apiResponse);
     console.log(isValid);
 	};
   
@@ -45,8 +58,7 @@ function Login() {
 					</FormHeader>
 					<Form
 						onSubmit={(e) => handleSubmit(e)}
-						method="POST"
-						action="https://autoluby.dev.luby.com.br/login">
+						method="POST">
 						<>
 							<FormLabel>Endereço de email</FormLabel>
 							<FormInput placeholder="@mail.com" id="email" />
