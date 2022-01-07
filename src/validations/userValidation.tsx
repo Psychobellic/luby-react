@@ -1,8 +1,8 @@
 import { object, string, boolean } from 'yup';
 
 const userSchema = object({
-	email: string().email().required(),
-	password: string().required(),
+	email: string().email().min(4).max(255).required(),
+	password: string().min(4).max(18).required(),
 	rememberPassword: boolean(),
 });
 

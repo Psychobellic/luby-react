@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import userSchema from '../validations/userValidation';
-import { InferType } from 'yup';
+
 
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login'; 
 
 
 function Login() {
+
 	const [remember, setRemember] = useState(false);
+
 	const handleClick = () => {
-		setRemember(!remember);
+    remember ? setRemember(false) : setRemember(true);
 	};
 
-  const forgotPassword = () => {
-    
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
 		e.preventDefault();
+    let formData = {
+			email: e.target[0].value,
+			password: e.target[1].value,
+			remember: remember,
+		};
+    const isValid = await userSchema.isValid(formData);
+
+		if (isValid !== true) {
+			alert('Form input invalid') 
+		}
+
+		console.log(formData);
+    console.log(isValid);
 	};
+  
+  const forgotPassword = () => {
+
+  };
+
 
 	return (
 		<>
@@ -27,7 +43,10 @@ function Login() {
 						<LoginTitle>Bem-bindo à AutoLuby</LoginTitle>
 						<LoginText>Faça o login para acessar sua conta.</LoginText>
 					</FormHeader>
-					<Form onSubmit={(e) => handleSubmit(e)}>
+					<Form
+						onSubmit={(e) => handleSubmit(e)}
+						method="POST"
+						action="https://autoluby.dev.luby.com.br/login">
 						<>
 							<FormLabel>Endereço de email</FormLabel>
 							<FormInput placeholder="@mail.com" id="email" />
@@ -39,7 +58,12 @@ function Login() {
 						<Row>
 							<FormLabel>
 								<CheckMark onClick={handleClick} remember={remember} />
-								<Checkbox type="checkbox" id="remember" checked={remember} />
+								<Checkbox
+									type="checkbox"
+									id="remember"
+									readOnly
+									checked={remember}
+								/>
 								<FormLabel htmlFor="remember">
 									<Action onClick={handleClick}>Lembrar minha senha</Action>
 								</FormLabel>
@@ -52,7 +76,7 @@ function Login() {
 						</Row>
 						<Button type="submit">Entrar</Button>
 						<div>
-							<NoAcc>Ainda não tem uma conta?</NoAcc>{' '}
+							<NoAcc>Ainda não tem uma conta?</NoAcc>
 							<Action>Criar Conta</Action>
 						</div>
 					</Form>
