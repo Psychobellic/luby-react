@@ -30,17 +30,10 @@ function Login() {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
 			}).then(response => response.json()).then(json => {
-				json.forEach(entry => {
-					setApiResponse(apiResponse && entry);
-				})
-				
+					setApiResponse(json);
+					console.log(apiResponse);			
 			});
 		}
-		
-
-
-		console.log(apiResponse);
-    console.log(isValid);
 	};
   
   const forgotPassword = () => {
