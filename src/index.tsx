@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import userStore from './redux/userStore';
+import userStore from './reducers/userStore';
 
 ReactDOM.render(
 	<React.StrictMode>

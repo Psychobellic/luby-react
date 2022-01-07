@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import userSchema from '../validations/userValidation';
+import {	userReducer	} from '../reducers/userReducer';
+import { RootState } from '../reducers/userStore';
 
 
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login'; 
 
 
 function Login() {
+	const { user }: any = useSelector( (state: RootState) => state.user); 
+	const dispatch = useDispatch();
 	const [apiResponse, setApiResponse] = useState({});
 	const [remember, setRemember] = useState(false);
 
@@ -15,11 +20,13 @@ function Login() {
 
   const handleSubmit = async (e: any) => {
 		e.preventDefault();
+
     let formData = {
 			email: e.target[0].value,
 			password: e.target[1].value,
 			remember: remember,
 		};
+		
     const isValid = await userSchema.isValid(formData);
 
 		if (isValid !== true) {
@@ -31,9 +38,11 @@ function Login() {
 				body: JSON.stringify(formData),
 			}).then(response => response.json()).then(json => {
 					setApiResponse(json);
-					console.log(apiResponse);			
+					console.log(apiResponse);
+					
 			});
 		}
+
 	};
   
   const forgotPassword = () => {
