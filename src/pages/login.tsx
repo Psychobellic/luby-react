@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
@@ -10,26 +10,24 @@ import store from '../redux/store';
 function Login() {
 	const dispatch = useDispatch();
 	const [passFormData, setPassFormData] = useState({}); // pass form data to API request
-	const [apiResponse, setApiResponse] = useState({}); // store API response and set redux state from it on submit
 	const [remember, setRemember] = useState(false);
 	
-
 	async function fetchOnSubmit(){
 		try {
 				fetch('https://autoluby.dev.luby.com.br/login', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(passFormData),
-				})
-					.then((response) => response.json())
+				}).then((response) => response.json())
 					.then((json) => {
-						setApiResponse(json)
-					});
+						dispatch(setUser(json))
+					})
 			} catch (error) {
 				alert(error);
 			}
-		dispatch(setUser(apiResponse));
+			console.log(store.getState().payload)
 		}
+
 
 	const handleClick = () => {
     remember ? setRemember(false) : setRemember(true);
@@ -44,7 +42,6 @@ function Login() {
 		};
 		
 		setPassFormData(formData);
-		console.log(store.getState());
     const isValid = await userSchema.isValid(formData);
 
 		if (isValid !== true) {
@@ -52,9 +49,8 @@ function Login() {
 		} else {
 			await fetchOnSubmit();
 		};
-				
 	};
-  
+
   const forgotPassword = () => {
 
   };

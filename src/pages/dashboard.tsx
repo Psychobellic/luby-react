@@ -7,10 +7,12 @@ import Out from "../img/out";
 import { NavWrapper, LogoWrapper, LogoText, SearchWrapper, SearchInput, Button, Btn, Text, BodyWrapper, Body, Greeting, Menu, CardsWrapper } from '../styles/dashboard';
 
 export default function Dashboard(){
-	  const [reserved, setReserved] = useState('147 VEÍCULOS');
-		const [list, setList] = useState('180 VEÍCULOS');
-		const [employees, setEmployees] = useState('147 FUNCIONÁRIOS');
-
+	const [reserved, setReserved] = useState('147 VEÍCULOS');
+	const [list, setList] = useState('180 VEÍCULOS');
+	const [employees, setEmployees] = useState('147 FUNCIONÁRIOS');
+	setList('180 VEÍCULOS');
+	setReserved('147 VEÍCULOS');
+	setEmployees('147 FUNCIONÁRIOS');
 
   return (
 		<>
