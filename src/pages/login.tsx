@@ -20,12 +20,15 @@ function Login() {
 					body: JSON.stringify(passFormData),
 				}).then((response) => response.json())
 					.then((json) => {
-						dispatch(setUser(json))
+						if(json.message === 'Autenticado sucesso'){
+							dispatch(setUser(json))
+						}	else {
+							return () => fetchOnSubmit()
+						}
 					})
 			} catch (error) {
 				alert(error);
 			}
-			console.log(store.getState().payload)
 		}
 
 
