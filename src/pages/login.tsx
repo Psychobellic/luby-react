@@ -1,16 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
-import userStore from '../redux/store'; 
-import { setUser } from '../redux/actions';
+import { setUser } from '../redux/userSlice';
+import store from '../redux/store';
 
 
 
 function Login() {
 	const dispatch = useDispatch();
-	const [apiResponse, setApiResponse] = useState({});
+	const [passFormData, setPassFormData] = useState({}); // pass form data to API request
+	const [apiResponse, setApiResponse] = useState({}); // store API response and set redux state from it on submit
 	const [remember, setRemember] = useState(false);
+	
+
+	async function fetchOnSubmit(){
+		try {
+				fetch('https://autoluby.dev.luby.com.br/login', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(passFormData),
+				})
+					.then((response) => response.json())
+					.then((json) => {
+						setApiResponse(json)
+					});
+			} catch (error) {
+				alert(error);
+			}
+		dispatch(setUser(apiResponse));
+		}
 
 	const handleClick = () => {
     remember ? setRemember(false) : setRemember(true);
@@ -18,40 +37,23 @@ function Login() {
 
   const handleSubmit = async (e: any) => {
 		e.preventDefault();
-
     let formData = {
 			email: e.target[0].value,
 			password: e.target[1].value,
 			remember: remember,
 		};
 		
+		setPassFormData(formData);
+		console.log(store.getState());
     const isValid = await userSchema.isValid(formData);
 
 		if (isValid !== true) {
-			alert('Form input invalid') 
+			alert('invalid Form input') 
 		} else {
-			try {
-				fetch('https://autoluby.dev.luby.com.br/login', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(formData),
-				})
-					.then((response) => response.json())
-					.then((json) => {
-						setApiResponse(json);
-						console.log(apiResponse);
-						const unsubscribe = userStore.subscribe(() =>
-							userStore.dispatch(setUser(formData, json))
-						);
-						console.log(userStore.getState());
-						unsubscribe();
-					});
-			} catch (error) {
-				alert(error);
-			}
-	} 
+			await fetchOnSubmit();
+		};
+				
 	};
-	
   
   const forgotPassword = () => {
 

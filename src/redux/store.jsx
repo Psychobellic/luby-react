@@ -5,10 +5,12 @@ update state via dispatch(action)
 register listeners via subscribe(listener)
 unsubscribe to store
 */
-import {  createStore } from 'redux';
-import { userReducer } from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './userSlice';
 
 
-const userStore = createStore(userReducer);
-
-export default userStore;
+export default configureStore({
+  reducer: {
+    payload: userReducer
+  }
+});
