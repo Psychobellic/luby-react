@@ -9,13 +9,39 @@ export const slice = createSlice({
       remember: false,
       token: '',
       fetchedData: {
-     
+        data: {
+          message: '',
+          token: '',
+          totalEmployees: 0,
+          totalVehicles: 0,
+          totalVehiclesLoggedUser: 0,
+          user: {
+            bio: '',
+            cpf: '',
+            name: '',
+            email: '',
+            salary: 0,
+            vehicles: [
+              {
+                brand: '',
+                model: '',
+                yer: '',
+                km: 0,
+                color: '',
+                chassi: '',
+                value: 0,
+                status: '',
+              }
+            ]
+          }
+        },
+        status: null,
       },
     }
   },
   reducers: {
     login: (state, action) => {
-      state.value = action.payload
+      state.value.fetchedData.data = action.payload;
     },
     setEmail: (state, action) => {
       state.value.email = action.payload
@@ -29,14 +55,10 @@ export const slice = createSlice({
     setToken: (state, action) => {
       state.value.token = action.payload
     },
-    setFetchedData: (state, action) => {
-      state.value.fetchedData = action.payload
-    },
-
   }
 })
 
-export const { login, setEmail, setPassword, setRemember, setToken, setFetchedData } = slice.actions;
+export const { login, setEmail, setPassword, setRemember, setToken } = slice.actions;
 
 export const selectGlobal = state => state.payload;
 

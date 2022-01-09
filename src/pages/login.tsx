@@ -7,18 +7,13 @@ import {
 	setEmail,
 	setPassword,
 	setRemember,
-	setFetchedData,
 } from '../redux/slice';
 import getContent from '../api/fetch';
 
 function Login() {
-	const [fetchData, setFetchData] = useState({});
 	const [checked, setChecked] = useState(false);
-
 	const store = useSelector((state: any) => state.store.value);
-
 	const dispatch = useDispatch();
-
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -32,12 +27,11 @@ function Login() {
 		const isValid = await userSchema.isValid(formData);
 		if (isValid) {
 			const result = await getContent(formData, store.token);
-			return dispatch(setFetchedData(result));
+			dispatch(login(result));
+			console.log(result)
 		} else {
 			alert('invalid Form input');
 		}
-		
-
 	};
 
 	const forgotPassword = () => {};
