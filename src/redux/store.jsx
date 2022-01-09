@@ -4,7 +4,7 @@ import storeReducer from './slice';
 
 const middleware = [thunk];
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     store: storeReducer,
   },
@@ -12,3 +12,5 @@ export default configureStore({
     serializableCheck: false,
   }).concat(middleware),
 });
+
+export default store;

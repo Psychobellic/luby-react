@@ -3,56 +3,40 @@ import { createSlice } from "@reduxjs/toolkit";
 export const slice = createSlice({
   name: 'store',
   initialState: {
-    email: '',
-    password: '',
-    remember: false,
-    token: '',
-    passFormData: '',
-    userData: {
-
-    },
+    value: {
+      email: 'admin@luby.com.br',
+      password: 'admin',
+      remember: false,
+      token: '',
+      fetchedData: {
+     
+      },
+    }
   },
   reducers: {
-    setUser: (state, { payload }) => {
-      state.userData = payload;
+    login: (state, action) => {
+      state.value = action.payload
     },
-    getUser: () => {
-      return slice.state.userData;
+    setEmail: (state, action) => {
+      state.value.email = action.payload
     },
-    setEmail: (state, { payload }) => {
-      state.email = payload;
+    setPassword: (state, action) => {
+      state.value.password = action.payload
     },
-    getEmail: (state) => {
-      return state.email
+    setRemember: (state, action) => {
+      state.value.remember = action.payload
     },
-    setPassword: (state, { payload }) => {
-      state.password = payload;
+    setToken: (state, action) => {
+      state.value.token = action.payload
     },
-    getPassword: (state) => {
-      return state.password;
+    setFetchedData: (state, action) => {
+      state.value.fetchedData = action.payload
     },
-    setRemember: (state, { payload }) => {
-      state.remember = payload;
-    },
-    getRemember: (state) => {
-      return state.remember;
-    },
-    setToken: (state, { payload }) => {
-      state.token = payload;
-    },
-    getToken: (state) => {
-       return state.token;
-    },
-    setPassFormData: (state, { payload }) => {
-      state.passFormData = payload;
-    },
-    getPassFormData: (state) => {
-      return state.passFormData;
-    }
+
   }
 })
 
-export const { setEmail, getEmail, setPassword, getPassword, setRemember, getRemember, setToken, getToken, setPassFormData, getPassFormData } = slice.actions;
+export const { login, setEmail, setPassword, setRemember, setToken, setFetchedData } = slice.actions;
 
 export const selectGlobal = state => state.payload;
 
