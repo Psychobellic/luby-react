@@ -26,9 +26,9 @@ function Login() {
 
 		const isValid = await userSchema.isValid(formData);
 		if (isValid) {
-			const result = await getContent(formData, store.token);
-			dispatch(login(result));
-			console.log(result)
+			await getContent(formData, store.token).then((res) =>
+			dispatch(login(res))
+			)
 		} else {
 			alert('invalid Form input');
 		}

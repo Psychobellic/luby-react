@@ -41,7 +41,7 @@ export const slice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.value.fetchedData.data = action.payload;
+      state.value.fetchedData.data = {...action.payload};
     },
     setEmail: (state, action) => {
       state.value.email = action.payload
