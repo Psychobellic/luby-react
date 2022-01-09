@@ -1,14 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import userReducer from './userSlice';
-import statesReducer from './statesSlice';
+import storeReducer from './slice';
 
 const middleware = [thunk];
 
 export default configureStore({
   reducer: {
-    user: userReducer,
-    states: statesReducer,
+    store: storeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,

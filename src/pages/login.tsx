@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
-import { setUser, getUser } from '../redux/userSlice';
-import { setEmail,
+import {
+	setUser,
+	getUser,
+	setEmail,
 	getEmail,
 	setPassword,
 	getPassword,
@@ -12,11 +14,10 @@ import { setEmail,
 	setToken,
 	getToken,
 	setPassFormData,
-	getPassFormData 
-} from '../redux/statesSlice';
+	getPassFormData,
+} from '../redux/slice';
 import store from '../redux/store';
 import axios from 'axios';
-
 
 function Login() {
 	const [ checked, setChecked ] = useState(false); 
@@ -27,7 +28,6 @@ function Login() {
 		password: '',
 		remember: false,
 	}); // pass form data to API request
-
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -56,15 +56,11 @@ function Login() {
 				.catch((e) => {
 					console.log(e);
 				});
-
-				
 		};
 
 		const isValid = await userSchema.isValid(formData);
 
 		isValid ? axiosRequest() : alert('invalid Form input');
-
-
 
 	};
 	const forgotPassword = () => {};
