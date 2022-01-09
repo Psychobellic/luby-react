@@ -9,7 +9,7 @@ const userSchema = object({
 export interface User {
 	email: string;
 	password: string;
-	rememberPassword: Boolean;
+	rememberPassword: boolean;
 }
 
 export default userSchema;

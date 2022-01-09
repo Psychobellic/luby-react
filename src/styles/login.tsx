@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-	remember: Boolean;
+	remember: boolean;
 }
 
 export const LoginWrapper = styled.div`

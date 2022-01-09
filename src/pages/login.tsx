@@ -2,61 +2,82 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userSchema from '../validations/userValidation';
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
-import { setUser } from '../redux/userSlice';
+import { setUser, getUser } from '../redux/userSlice';
+import { setEmail,
+	getEmail,
+	setPassword,
+	getPassword,
+	setRemember,
+	getRemember,
+	setToken,
+	getToken,
+	setPassFormData,
+	getPassFormData 
+} from '../redux/statesSlice';
 import store from '../redux/store';
-
+import axios from 'axios';
 
 
 function Login() {
+	const [ checked, setChecked ] = useState(false); 
 	const dispatch = useDispatch();
-	const [passFormData, setPassFormData] = useState({}); // pass form data to API request
-	const [remember, setRemember] = useState(false);
-	
-	async function fetchOnSubmit(){
-		try {
-				fetch('https://autoluby.dev.luby.com.br/login', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(passFormData),
-				}).then((response) => response.json())
-					.then((json) => {
-						if(json.message === 'Autenticado sucesso'){
-							dispatch(setUser(json))
-						}	else {
-							return () => fetchOnSubmit()
-						}
-					})
-			} catch (error) {
-				alert(error);
-			}
-		}
 
+	const [passFormData, setPassFormData] = useState({
+		email: '',
+		password: '',
+		remember: false,
+	}); // pass form data to API request
+
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+
+		let formData = {
+			email: dispatch(getEmail(e)).payload,
+			password: dispatch(getPassword(e)).payload,
+			remember: dispatch(getRemember(e)).payload,
+		};
+
+		setPassFormData(formData);
+
+		const axiosRequest = async () => {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				Authorization: `Bearer ${dispatch(getToken(e))}`,
+			};
+			await axios
+				.post('https://autoluby.dev.luby.com.br/login', passFormData, config)
+				.then(({ data }) => {
+					dispatch(setUser(data));
+					return dispatch(getUser(data));
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+
+				
+		};
+
+		const isValid = await userSchema.isValid(formData);
+
+		isValid ? axiosRequest() : alert('invalid Form input');
+
+
+
+	};
+	const forgotPassword = () => {};
 
 	const handleClick = () => {
-    remember ? setRemember(false) : setRemember(true);
-	};
-
-  const handleSubmit = async (e: any) => {
-		e.preventDefault();
-    let formData = {
-			email: e.target[0].value,
-			password: e.target[1].value,
-			remember: remember,
-		};
-		
-		setPassFormData(formData);
-    const isValid = await userSchema.isValid(formData);
-
-		if (isValid !== true) {
-			alert('invalid Form input') 
+		if(checked){
+			setChecked(false)
+			dispatch(setRemember(false));
 		} else {
-			await fetchOnSubmit();
-		};
-	};
-
-  const forgotPassword = () => {
-
-  };
+			setChecked(true);
+			dispatch(setRemember(true));
+		}
+	}
 
 	return (
 		<>
@@ -66,25 +87,32 @@ function Login() {
 						<LoginTitle>Bem-bindo à AutoLuby</LoginTitle>
 						<LoginText>Faça o login para acessar sua conta.</LoginText>
 					</FormHeader>
-					<Form
-						onSubmit={(e) => handleSubmit(e)}
-						method="POST">
+					<Form onSubmit={(e) => handleSubmit(e)} method="POST">
 						<>
 							<FormLabel>Endereço de email</FormLabel>
-							<FormInput placeholder="@mail.com" id="email" />
+							<FormInput
+								placeholder="@mail.com"
+								id="email"
+								onChange={(e) => dispatch(setEmail(e.target.value))}
+							/>
 						</>
 						<>
 							<FormLabel>Senha</FormLabel>
-							<FormInput placeholder="senha" id="senha" />
+							<FormInput
+								placeholder="senha"
+								id="senha"
+								onChange={(e) => dispatch(setPassword(e.target.value))}
+							/>
 						</>
 						<Row>
 							<FormLabel>
-								<CheckMark onClick={handleClick} remember={remember} />
+								<CheckMark remember={checked} />
 								<Checkbox
 									type="checkbox"
 									id="remember"
 									readOnly
-									checked={remember}
+									checked={checked}
+									onClick={handleClick}
 								/>
 								<FormLabel htmlFor="remember">
 									<Action onClick={handleClick}>Lembrar minha senha</Action>

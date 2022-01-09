@@ -1,16 +1,16 @@
-/* Holds application's state 
-App => Action => Reducer => Store 
-access state via getState()
-update state via dispatch(action)
-register listeners via subscribe(listener)
-unsubscribe to store
-*/
 import { configureStore } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
 import userReducer from './userSlice';
+import statesReducer from './statesSlice';
 
+const middleware = [thunk];
 
 export default configureStore({
   reducer: {
-    payload: userReducer
-  }
+    user: userReducer,
+    states: statesReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }).concat(middleware),
 });
