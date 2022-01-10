@@ -40,8 +40,8 @@ export const slice = createSlice({
     },
     fetchedEmployees: {
       perPage: 0,
-      currentPage: 1,
-      totalRecords: 9,
+      currentPage: 0,
+      totalRecords: 0,
       employees: [
         {
           name: '',
@@ -86,13 +86,13 @@ export const slice = createSlice({
     setToken: (state, action) => {
       state.value.token = action.payload
     },
-    fetchEmployees: (state, action) => {
-      state.value.fetchedEmployees = {...action.payload}
-    }
+    setEmployees: (state, action) => {
+      state.fetchedEmployees = action.payload;
+    },
   }
 })
 
-export const { login, setEmail, setPassword, setRemember, setToken } = slice.actions;
+export const { login, setEmail, setPassword, setRemember, setToken, setEmployees } = slice.actions;
 
 export const selectGlobal = state => state.payload;
 

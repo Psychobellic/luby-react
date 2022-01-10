@@ -9,7 +9,7 @@ import {
 	setPassword,
 	setRemember,
 } from '../redux/slice';
-import getContent from '../api/fetch';
+import { postLogin } from '../api/fetch';
 
 function Login() {
 	const [checked, setChecked] = useState(false);
@@ -28,7 +28,7 @@ function Login() {
 
 		const isValid = await userSchema.isValid(formData);
 		if (isValid) {
-			await getContent(formData, store.token).then((res) =>
+			await postLogin(formData, store.token).then((res) =>
 			dispatch(login(res))
 			).then(() => {
 				navigate('/dashboard')
