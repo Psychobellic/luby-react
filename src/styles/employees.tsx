@@ -20,16 +20,24 @@ export const P = styled.p`
 	color: #a2a2a2;
 	align-items: center;
 	line-height: 120%;
+  padding: 10px;
+  height: auto;
+  width: 120%;
 `;
 
-export const Header = styled.div`
-
+export const Headers = styled.div`
+	display: flex;
+	flex-direction: row;
 `;
 
 export const ListHeader = styled.dt`
-
+  display: flex;
+  flex-direction: row;
 `;
 
 export const List = styled.dl``;
 
-export const ListItem = styled.dd``;
+export const ListItem = styled.dt`
+	display: flex;
+	flex-direction: row;
+`;

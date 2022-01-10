@@ -86,6 +86,9 @@ export const slice = createSlice({
     setEmployees: (state, action) => {
       state.fetchedEmployees = action.payload;
     },
+    setVehicles: (state, action) => {
+      state.fetchedVehicles = action.payload;
+    },
   }
 })
 

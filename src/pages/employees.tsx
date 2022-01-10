@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { EmployeeWrapper, ListHeader, ListItem, List, P } from '../styles/employees';
+import {
+	EmployeeWrapper,
+	ListHeader,
+	ListItem,
+	List,
+	P,
+	Headers,
+} from '../styles/employees';
 import {
 	NavWrapper,
 	LogoWrapper,
 	LogoText,
 	Btn,
 	Text,
+	Title,
 	BodyWrapper,
 	Body,
-	Greeting,
-	Menu,
 	SearchWrapper,
 	SearchInput,
 	Button
@@ -32,7 +38,6 @@ function Employees() {
 	const dispatch = useDispatch();
 	const store = useSelector((state: any) => state.store);
 	const fetchedData = useSelector((state: any) => state.store.fetchedEmployees);
-	const { perPage, currentPage, totalRecords, employees }: Props = fetchedData;
 	const token = store.fetchedData.token;
 
 	  const [tableRange, setTableRange] = useState([]);
@@ -41,7 +46,10 @@ function Employees() {
 	useEffect(()=>{
 			getEmployees(token)
 				.then((res: any) => dispatch(setEmployees(res)))
-				.catch((error: Error) => console.log(error));
+				.catch((error: Error) => {
+					console.log(error);
+					return <h1>Error...</h1>
+				});
 	},[])
 
 		const calculateRange = (employees: any, perPage: number) => {
@@ -68,12 +76,15 @@ function Employees() {
 			</NavWrapper>
 			<BodyWrapper>
 				<Body>
-					<Greeting>Funcionários</Greeting>
+					<Title>Funcionários</Title>
 					<ListHeader>
-						<Menu>Listagem de funcionários da Empresa</Menu>
-						<P>{currentPage}</P>
-						<P>{perPage}</P>
-						<P>{totalRecords}</P>
+						<P>Listagem de funcionários da Empresa</P>
+						<P>{() => fetchedData.currentPage}</P>
+						<P>{() => fetchedData.perPage}</P>
+						<P>{() => fetchedData.totalRecords}</P>
+
+						{/* <PaginationStuff /> */}
+
 						<SearchWrapper>
 							<SearchInput />
 							<Button type="submit">
@@ -81,18 +92,34 @@ function Employees() {
 							</Button>
 						</SearchWrapper>
 					</ListHeader>
+					<Headers>
+						<P>Nome</P>
+						<P>Email</P>
+						<P>CPF</P>
+						<P>Valor</P>
+						<P>BIO</P>
+					</Headers>
 					<List>
-						{employees.map((employee: any, index: number)=>{
-							return (
-								<ListItem key={index}>
-									<P>{employee.name}</P>
-									<P>{employee.email}</P>
-									<P>{employee.cpf}</P>
-									<P>{employee.salary}</P>
-									<P>{employee.bio}</P>
-								</ListItem>
-							);
-						})}
+						{fetchedData ? (
+							fetchedData.employees.map((employee: any, index: number) => {
+								return (
+									<ListItem key={index}>
+										<P>{employee.name}</P>
+										<P>{employee.email}</P>
+										<P>{employee.cpf}</P>
+										<P>
+											{
+												Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'})
+													.format(employee.salary)
+											}
+										</P>
+										<P>{employee.bio}</P>
+									</ListItem>
+								);
+							})
+						) : (
+							<Title>Unauthorized access</Title>
+						)}
 					</List>
 				</Body>
 			</BodyWrapper>
