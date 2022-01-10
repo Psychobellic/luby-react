@@ -7,36 +7,33 @@ export const slice = createSlice({
       email: 'admin@luby.com.br',
       password: 'admin',
       remember: false,
-      token: '',
-      fetchedData: {
-        data: {
-          message: '',
-          token: '',
-          totalEmployees: 0,
-          totalVehicles: 0,
-          totalVehiclesLoggedUser: 0,
-          user: {
-            bio: '',
-            cpf: '',
-            name: '',
-            email: '',
-            salary: 0,
-            vehicles: [
-              {
-                brand: '',
-                model: '',
-                yer: '',
-                km: 0,
-                color: '',
-                chassi: '',
-                value: 0,
-                status: '',
-              }
-            ]
-          }
+      status: null,
+    },
+    fetchedData: {
+        message: '',
+        token: '',
+        totalEmployees: 0,
+        totalVehicles: 0,
+        totalVehiclesLoggedUser: 0,
+        user: {
+          bio: '',
+          cpf: '',
+          name: '',
+          email: '',
+          salary: 0,
+          vehicles: [
+            {
+              brand: '',
+              model: '',
+              yer: '',
+              km: 0,
+              color: '',
+              chassi: '',
+              value: 0,
+              status: '',
+            }
+          ]
         },
-        status: null,
-      },
     },
     fetchedEmployees: {
       perPage: 0,
@@ -72,7 +69,7 @@ export const slice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.value.fetchedData.data = {...action.payload};
+      state.fetchedData = {...action.payload};
     },
     setEmail: (state, action) => {
       state.value.email = action.payload
@@ -84,7 +81,7 @@ export const slice = createSlice({
       state.value.remember = action.payload
     },
     setToken: (state, action) => {
-      state.value.token = action.payload
+      state.fetchedData.token = action.payload
     },
     setEmployees: (state, action) => {
       state.fetchedEmployees = action.payload;

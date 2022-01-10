@@ -13,7 +13,7 @@ import { postLogin } from '../api/fetch';
 
 function Login() {
 	const [checked, setChecked] = useState(false);
-	const store = useSelector((state: any) => state.store.value);
+	const store = useSelector((state: any) => state.store);
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
 
@@ -21,19 +21,18 @@ function Login() {
 		e.preventDefault();
 
 		let formData = {
-			email: store.email,
-			password: store.password,
-			remember: store.remember || false,
+			email: store.value.email,
+			password: store.value.password,
+			remember: store.value.remember || false,
 		};
 
 		const isValid = await userSchema.isValid(formData);
 		if (isValid) {
-			await postLogin(formData, store.token).then((res) =>
+			await postLogin(formData, store.value.token).then((res) =>
 			dispatch(login(res))
 			).then(() => {
 				navigate('/dashboard')
-			}
-			)
+			}).catch((error:Error)=> console.log(error))
 		} else {
 			alert('invalid Form input');
 		}
