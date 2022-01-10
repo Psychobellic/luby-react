@@ -114,6 +114,10 @@ export const Headers = styled.div`
 export const ListHeader = styled.div`
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
 `;
 
 export const TableHeader = styled.th`
@@ -127,7 +131,7 @@ export const TableHeader = styled.th`
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-	min-width: 80%;
+	min-width: 17.5vw;
 `;
 
 export const TableRow = styled.tr`

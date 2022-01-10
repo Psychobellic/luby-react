@@ -9,7 +9,7 @@ import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import Vehicles from './pages/vehicles';
 import Employees from './pages/employees';
-import History from './pages/history';
+import Sold from './pages/sold';
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -18,7 +18,7 @@ ReactDOM.render(
 				<Route path="/" element={<App />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/dashboard" element={< Dashboard />} />
-				<Route path="/history" element={<History />} />
+				<Route path="/sold" element={<Sold />} />
 				<Route path="/vehicles" element={<Vehicles />} />
 				<Route path="/employees" element={<Employees />} />
 			</Routes>

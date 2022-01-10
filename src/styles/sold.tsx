@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-
-export const VehiclesWrapper = styled.div`
-`;
+export const SoldWrapper = styled.div``;
 
 export const BodyWrapper = styled.div`
 	width: 100vw;
@@ -42,7 +40,7 @@ export const SearchWrapper = styled.form`
 	text-align: center;
 `;
 
-export const BodyVehicles = styled.div`
+export const BodySold = styled.div`
 	min-width: 100%;
 `;
 
@@ -117,10 +115,6 @@ export const Table = styled.table`
 export const ListHeader = styled.div`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	width: 90%;
-	margin-left: 5%;
-	margin-right: 5%;
 `;
 
 export const Headers = styled.div`
@@ -139,7 +133,8 @@ export const TableHeader = styled.th`
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-	min-width: 11vw;
+	min-width: 27.5%;
+	max-width: 27.5%;
 `;
 
 export const TableRow = styled.tr`

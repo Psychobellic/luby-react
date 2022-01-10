@@ -65,6 +65,9 @@ export const slice = createSlice({
           value: 0,
         }
       ]
+    },
+    fetchedHistory: {
+      
     }
   },
   reducers: {
@@ -89,10 +92,13 @@ export const slice = createSlice({
     setVehicles: (state, action) => {
       state.fetchedVehicles = action.payload;
     },
+    setHistory: (state, action) => {
+      state.fetchedHistory = action.payload;
+    }
   }
 })
 
-export const { login, setEmail, setPassword, setRemember, setToken, setEmployees, setVehicles } = slice.actions;
+export const { login, setEmail, setPassword, setRemember, setToken, setEmployees, setVehicles, setHistory } = slice.actions;
 
 export const selectGlobal = state => state.payload;
 
