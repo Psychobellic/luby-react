@@ -37,6 +37,37 @@ export const slice = createSlice({
         },
         status: null,
       },
+    },
+    fetchedEmployees: {
+      perPage: 0,
+      currentPage: 1,
+      totalRecords: 9,
+      employees: [
+        {
+          name: '',
+          email: '',
+          cpf: '',
+          salary: 0,
+          bio: '',
+        }
+      ]
+    },
+    fetchedVehicles: {
+      perPage: 0,
+      currentPage: 0,
+      totalRecords: 0,
+      vehicles: [
+        {
+          brand: '',
+          model: '',
+          yer: '',
+          km: 0,
+          color: '',
+          status: '',
+          chassi: '',
+          value: 0,
+        }
+      ]
     }
   },
   reducers: {
@@ -55,6 +86,9 @@ export const slice = createSlice({
     setToken: (state, action) => {
       state.value.token = action.payload
     },
+    fetchEmployees: (state, action) => {
+      state.value.fetchedEmployees = {...action.payload}
+    }
   }
 })
 

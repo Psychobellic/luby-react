@@ -21,7 +21,6 @@ export default function Dashboard(){
 					<LogoSVG />
 					<LogoText>AutoLuby</LogoText>
 				</LogoWrapper>
-				;
 				<SearchWrapper>
 					<SearchInput />
 					<Button type="submit">

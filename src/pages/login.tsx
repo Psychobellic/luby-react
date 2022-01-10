@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import userSchema from '../validations/userValidation';
 import { LoginWrapper, LoginForm, LoginTitle, LoginText, FormHeader, Form, FormInput, FormLabel, CheckMark, Checkbox, Row, NoAcc, Action, Image, Button } from '../styles/login';
@@ -14,6 +15,7 @@ function Login() {
 	const [checked, setChecked] = useState(false);
 	const store = useSelector((state: any) => state.store.value);
 	const dispatch = useDispatch();
+	let navigate = useNavigate();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -28,6 +30,9 @@ function Login() {
 		if (isValid) {
 			await getContent(formData, store.token).then((res) =>
 			dispatch(login(res))
+			).then(() => {
+				navigate('/dashboard')
+			}
 			)
 		} else {
 			alert('invalid Form input');
