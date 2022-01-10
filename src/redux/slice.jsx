@@ -92,7 +92,7 @@ export const slice = createSlice({
   }
 })
 
-export const { login, setEmail, setPassword, setRemember, setToken, setEmployees } = slice.actions;
+export const { login, setEmail, setPassword, setRemember, setToken, setEmployees, setVehicles } = slice.actions;
 
 export const selectGlobal = state => state.payload;
 

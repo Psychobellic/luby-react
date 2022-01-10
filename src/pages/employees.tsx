@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	EmployeeWrapper,
 	ListHeader,
-	ListItem,
-	List,
-	P,
+	TableHeader,
 	Headers,
-} from '../styles/employees';
-import {
+	BodyEmployees,
+	Paragraph,
+	TableData,
+	Table,
+	TableRow,
 	NavWrapper,
 	LogoWrapper,
 	LogoText,
@@ -16,11 +17,10 @@ import {
 	Text,
 	Title,
 	BodyWrapper,
-	Body,
 	SearchWrapper,
 	SearchInput,
-	Button
-} from '../styles/dashboard';
+	Button,
+} from '../styles/employees';
 import SearchIcon from '../img/searchIcon';
 import LogoSVG from '../img/logo';
 import Out from '../img/out';
@@ -40,8 +40,18 @@ function Employees() {
 	const fetchedData = useSelector((state: any) => state.store.fetchedEmployees);
 	const token = store.fetchedData.token;
 
-	  const [tableRange, setTableRange] = useState([]);
-		const [slice, setSlice] = useState([]);
+ 	// Pagination stuff //
+  const [tableRange, setTableRange] = useState([]);
+	const [slice, setSlice] = useState([]);
+	const calculateRange = (employees: any, perPage: number) => {
+				const range = [];
+				const num = Math.ceil(employees.length / perPage);
+				let i = 1;
+				for (let i = 1; i <= num; i++) {
+					range.push(i);
+				}
+			return range;
+		};
 
 	useEffect(()=>{
 			getEmployees(token)
@@ -51,16 +61,6 @@ function Employees() {
 					return <h1>Error...</h1>
 				});
 	},[])
-
-		const calculateRange = (employees: any, perPage: number) => {
-			const range = [];
-			const num = Math.ceil(employees.length / perPage);
-			let i = 1;
-			for (let i = 1; i <= num; i++) {
-				range.push(i);
-			}
-			return range;
-		};
 
 	return (
 		<EmployeeWrapper>
@@ -75,13 +75,15 @@ function Employees() {
 				</Btn>
 			</NavWrapper>
 			<BodyWrapper>
-				<Body>
+				<BodyEmployees>
 					<Title>Funcionários</Title>
 					<ListHeader>
-						<P>Listagem de funcionários da Empresa</P>
-						<P>{() => fetchedData.currentPage}</P>
-						<P>{() => fetchedData.perPage}</P>
-						<P>{() => fetchedData.totalRecords}</P>
+						<>
+							<Paragraph>Listagem de funcionários da Empresa</Paragraph>
+							<Paragraph>{() => fetchedData.currentPage}</Paragraph>
+							<Paragraph>{() => fetchedData.perPage}</Paragraph>
+							<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
+						</>
 
 						{/* <PaginationStuff /> */}
 
@@ -92,36 +94,42 @@ function Employees() {
 							</Button>
 						</SearchWrapper>
 					</ListHeader>
-					<Headers>
-						<P>Nome</P>
-						<P>Email</P>
-						<P>CPF</P>
-						<P>Valor</P>
-						<P>BIO</P>
-					</Headers>
-					<List>
-						{fetchedData ? (
-							fetchedData.employees.map((employee: any, index: number) => {
-								return (
-									<ListItem key={index}>
-										<P>{employee.name}</P>
-										<P>{employee.email}</P>
-										<P>{employee.cpf}</P>
-										<P>
-											{
-												Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'})
-													.format(employee.salary)
-											}
-										</P>
-										<P>{employee.bio}</P>
-									</ListItem>
-								);
-							})
-						) : (
-							<Title>Unauthorized access</Title>
-						)}
-					</List>
-				</Body>
+					<Table>
+						<TableRow>
+							<Headers>
+								<TableHeader>Nome</TableHeader>
+								<TableHeader>Email</TableHeader>
+								<TableHeader>CPF</TableHeader>
+								<TableHeader>Valor</TableHeader>
+								<TableHeader>BIO</TableHeader>
+							</Headers>
+						</TableRow>
+				
+							{fetchedData ? (
+								fetchedData.employees.map((employee: any, index: number) => {
+									return (
+										
+											<TableRow key={index}>
+												<TableData>{employee.name}</TableData>
+												<TableData>{employee.email}</TableData>
+												<TableData>{employee.cpf}</TableData>
+												<TableData>
+													{Intl.NumberFormat('pt-BR', {
+														style: 'currency',
+														currency: 'BRL',
+													}).format(employee.salary)}
+												</TableData>
+												<TableData>{employee.bio}</TableData>
+											</TableRow>
+								
+									);
+								})
+							) : (
+								<Title>Unauthorized access</Title>
+							)}
+					
+					</Table>
+				</BodyEmployees>
 			</BodyWrapper>
 		</EmployeeWrapper>
 	);

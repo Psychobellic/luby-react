@@ -45,3 +45,25 @@ export async function getEmployees(token: string) {
 	}
 	return result;
 }
+
+export async function getVehicles(token: string){
+		const config = {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		var result;
+		try {
+			await axios
+				.get('https://autoluby.dev.luby.com.br/vehicles', config)
+				.then((response: AxiosResponse) => {
+					result = response.data;
+				})
+				.catch((error: Error) => console.log(error));
+		} catch (error) {
+			console.log(error);
+		}
+		return result;
+}

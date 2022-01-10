@@ -3,7 +3,6 @@ import Card from "../components/Card";
 import LogoSVG from "../img/logo";
 import SearchIcon from "../img/searchIcon";
 import Out from "../img/out";
-
 import { NavWrapper, LogoWrapper, LogoText, SearchWrapper, SearchInput, Button, Btn, Text, BodyWrapper, Body, Greeting, Menu, CardsWrapper } from '../styles/dashboard';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,7 +43,7 @@ function Dashboard(){
 								image="/white_suv.svg"
 							/>
 						</div>
-						<div onClick={() => navigate('/list')}>
+						<div onClick={() => navigate('/vehicles')}>
 						<Card
 							title={'Listagem geral de veículos'}
 							subTitle={'Listagem de veículos de toda a empresa'}

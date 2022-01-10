@@ -29,6 +29,7 @@ export const Title = styled.h3`
 	font-size: 1.625rem;
 	letter-spacing: -0.02em;
 	color: #495057;
+	padding-left: 6%;
 `;
 
 export const SubTitle = styled.h4`
