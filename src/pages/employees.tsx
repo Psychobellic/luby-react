@@ -20,6 +20,7 @@ import {
 	SearchWrapper,
 	SearchInput,
 	Button,
+	SubTitle,
 } from '../styles/employees';
 import SearchIcon from '../img/searchIcon';
 import LogoSVG from '../img/logo';
@@ -79,7 +80,7 @@ function Employees() {
 					<Title>Funcionários</Title>
 					<ListHeader>
 						<>
-							<Paragraph>Listagem de funcionários da Empresa</Paragraph>
+							<SubTitle>Listagem de funcionários da Empresa</SubTitle>
 							<Paragraph>{() => fetchedData.currentPage}</Paragraph>
 							<Paragraph>{() => fetchedData.perPage}</Paragraph>
 							<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
@@ -104,30 +105,27 @@ function Employees() {
 								<TableHeader>BIO</TableHeader>
 							</Headers>
 						</TableRow>
-				
-							{fetchedData ? (
-								fetchedData.employees.map((employee: any, index: number) => {
-									return (
-										
-											<TableRow key={index}>
-												<TableData>{employee.name}</TableData>
-												<TableData>{employee.email}</TableData>
-												<TableData>{employee.cpf}</TableData>
-												<TableData>
-													{Intl.NumberFormat('pt-BR', {
-														style: 'currency',
-														currency: 'BRL',
-													}).format(employee.salary)}
-												</TableData>
-												<TableData>{employee.bio}</TableData>
-											</TableRow>
-								
-									);
-								})
-							) : (
-								<Title>Unauthorized access</Title>
-							)}
-					
+
+						{fetchedData ? (
+							fetchedData.employees.map((employee: any, index: number) => {
+								return (
+									<TableRow key={index}>
+										<TableData>{employee.name}</TableData>
+										<TableData>{employee.email}</TableData>
+										<TableData>{employee.cpf}</TableData>
+										<TableData>
+											{Intl.NumberFormat('pt-BR', {
+												style: 'currency',
+												currency: 'BRL',
+											}).format(employee.salary)}
+										</TableData>
+										<TableData>{employee.bio}</TableData>
+									</TableRow>
+								);
+							})
+						) : (
+							<Title>Unauthorized access</Title>
+						)}
 					</Table>
 				</BodyEmployees>
 			</BodyWrapper>

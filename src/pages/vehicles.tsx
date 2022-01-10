@@ -20,6 +20,7 @@ import {
 	SearchWrapper,
 	SearchInput,
 	Button,
+	SubTitle,
 } from '../styles/vehicles';
 import SearchIcon from '../img/searchIcon';
 import LogoSVG from '../img/logo';
@@ -67,7 +68,7 @@ function Vehicles() {
 						<Title>Todos Veículos</Title>
 						<ListHeader>
 							<>
-								<Paragraph>Listagem geral de veículos</Paragraph>
+								<SubTitle>Listagem geral de veículos</SubTitle>
 								<Paragraph>{() => fetchedData.currentPage}</Paragraph>
 								<Paragraph>{() => fetchedData.perPage}</Paragraph>
 								<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
@@ -94,29 +95,29 @@ function Vehicles() {
 									<TableHeader>Valor</TableHeader>
 								</Headers>
 							</TableRow>
-								{fetchedData ? (
-									fetchedData.vehicles.map((vehicle: any, index: number) => {
-										return (
-												<TableRow key={index}>
-													<TableData>{vehicle.brand}</TableData>
-													<TableData>{vehicle.model}</TableData>
-													<TableData>{vehicle.yer}</TableData>
-													<TableData>{vehicle.km}</TableData>
-													<TableData>{vehicle.color}</TableData>
-													<TableData>{vehicle.status}</TableData>
-													<TableData>{vehicle.chassi}</TableData>
-													<TableData>
-														{Intl.NumberFormat('pt-BR', {
-															style: 'currency',
-															currency: 'BRL',
-														}).format(vehicle.value)}
-													</TableData>
-											</TableRow>
-										);
-									})
-								) : (
-									<Title>Unauthorized access</Title>
-								)}
+							{fetchedData ? (
+								fetchedData.vehicles.map((vehicle: any, index: number) => {
+									return (
+										<TableRow key={index}>
+											<TableData>{vehicle.brand}</TableData>
+											<TableData>{vehicle.model}</TableData>
+											<TableData>{vehicle.yer}</TableData>
+											<TableData>{vehicle.km}</TableData>
+											<TableData>{vehicle.color}</TableData>
+											<TableData>{vehicle.status}</TableData>
+											<TableData>{vehicle.chassi}</TableData>
+											<TableData>
+												{Intl.NumberFormat('pt-BR', {
+													style: 'currency',
+													currency: 'BRL',
+												}).format(vehicle.value)}
+											</TableData>
+										</TableRow>
+									);
+								})
+							) : (
+								<Title>Unauthorized access</Title>
+							)}
 						</Table>
 					</BodyVehicles>
 				</BodyWrapper>
