@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Card from "../components/Card";
 import LogoSVG from "../img/logo";
 import SearchIcon from "../img/searchIcon";
 import Out from "../img/out";
 
 import { NavWrapper, LogoWrapper, LogoText, SearchWrapper, SearchInput, Button, Btn, Text, BodyWrapper, Body, Greeting, Menu, CardsWrapper } from '../styles/dashboard';
+import { useNavigate } from 'react-router-dom';
 
-export default function Dashboard(){
+function Dashboard(){
 	const [reserved, setReserved] = useState('147 VEÍCULOS');
 	const [list, setList] = useState('180 VEÍCULOS');
 	const [employees, setEmployees] = useState('147 FUNCIONÁRIOS');
-	setList('180 VEÍCULOS');
-	setReserved('147 VEÍCULOS');
-	setEmployees('147 FUNCIONÁRIOS');
+	let navigate = useNavigate();
 
   return (
 		<>
@@ -35,29 +34,37 @@ export default function Dashboard(){
 			<BodyWrapper>
 				<Body>
 					<Greeting>Bem-vindo, Carlos</Greeting>
-					<Menu>Menu</Menu>;
+					<Menu>Menu</Menu>
 					<CardsWrapper>
-						<Card
-							title={'Veículos reservados e vendidos'}
-							subTitle={'Veículos reservados e vendidos por você'}
-							amount={reserved}
-							image="/white_suv.svg"
-						/>
+						<div onClick={() => navigate('/history')}>
+							<Card
+								title={'Veículos reservados e vendidos'}
+								subTitle={'Veículos reservados e vendidos por você'}
+								amount={reserved}
+								image="/white_suv.svg"
+							/>
+						</div>
+						<div onClick={() => navigate('/list')}>
 						<Card
 							title={'Listagem geral de veículos'}
 							subTitle={'Listagem de veículos de toda a empresa'}
 							amount={list}
 							image="chrysler.svg"
 						/>
+						</div>
+						<div onClick={() => navigate('/employees')}>
 						<Card
-							title={'Functionários da empresa'}
+							title={'Funcionários da empresa'}
 							subTitle={'Listagem de todos os funcionários da empresa'}
 							amount={employees}
 							image="employee.svg"
 						/>
+						</div>
 					</CardsWrapper>
 				</Body>
 			</BodyWrapper>
 		</>
 	);
 }
+
+export default Dashboard;

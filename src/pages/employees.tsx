@@ -18,11 +18,11 @@ import {
 import SearchIcon from '../img/searchIcon';
 import LogoSVG from '../img/logo';
 import Out from '../img/out';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export default function Employees() {
 	const [result, setResult] = useState([]);
-	const token = useSelector((state: any) => state.store.value.token);
+	const store = useSelector((state: any) => state.store.value.fetchedData.data);
 	const employeesFetch = useSelector((state: any) => state.store.fetchedEmployees);
 
 
@@ -30,16 +30,20 @@ export default function Employees() {
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'Authorization': 'Bearer ' + token
+			'Authorization': `Bearer ${store.token}`
 		}
 	}
 	
 	const fetching = () => {
-		try {axios.get('https://autoluby.dev.luby.com.br/employees', config).then((response) => {
-				let res = response.data;
-				setResult(res);
-				console.log(res)
-			}).catch((error)=> console.log(error))
+		try {
+			axios
+				.get('https://autoluby.dev.luby.com.br/employees', config)
+				.then((response: AxiosResponse) => {
+					let res = response.data;
+					setResult(res);
+					console.log(res);
+				})
+				.catch((error: Error) => console.log(error));
 	} catch (error) {
 		console.log(error);
 	}
@@ -48,7 +52,6 @@ export default function Employees() {
 useEffect(() => {
 	fetching();
 }, []);
-
 
 	return (
 		<EmployeeWrapper>
