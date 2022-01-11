@@ -1,4 +1,11 @@
-# Entrevista Luby - React JS:
+# Instruções:
+Instale https://nodejs.org/en/
+Clone o repositório do github, 
+Abra o command prompt, git bash ou o CLI de sua preferência.
+Rode o comando 'npm install', sem apóstrofo, para instalação das dependências descritas em package.json
+Rode o comando 'npm run dev', novamente sem apóstrofo, para rodar uma versão de desenvolvimento do projeto, que abrirá em uma nova guia do navegador padrão, em http://localhost:3000
+
+## Entrevista Luby - React JS:
 
 AutoLuby - Frontend
 Descrição da prova:
