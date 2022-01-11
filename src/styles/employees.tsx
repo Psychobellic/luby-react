@@ -49,22 +49,24 @@ export const Title = styled.h1`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 1.75rem;
+	font-size: 1.875rem;
 	color: #495057;
 	align-items: center;
 	line-height: 120%;
+	padding-left: 10vw;
 `;
 
 export const SubTitle = styled.h2`
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 500;
-	font-size: 1.125rem;
+	font-weight: 600;
+	font-size: 1.25rem;
 	line-height: 1.6875rem;
 	display: flex;
 	align-items: center;
 	letter-spacing: -0.02em;
-	color: #858585;
+	color: #495057;
+	padding-left: 5vw;
 `;
 
 export const Text = styled.p`
@@ -125,9 +127,9 @@ export const TableHeader = styled.th`
 	flex-direction: row;
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 600;
-	font-size: 1rem;
-	color: #495057;
+	font-weight: bold;
+	font-size: 0.8125rem;
+	color: #858585;
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
@@ -144,12 +146,12 @@ export const TableData = styled.td`
 	font-style: normal;
 	font-weight: 600;
 	font-size: 0.75rem;
-	color: #a2a2a2;
+	color: #495057;
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-  min-width: 17.5%;
-  max-width: 17.5%;
+	min-width: 17.5vw;
+	max-width: 17.5vw;
 `;
 
 export const SearchInput = styled.input`

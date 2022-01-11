@@ -55,7 +55,7 @@ function Employees() {
 	return (
 		<EmployeeWrapper>
 			<NavWrapper>
-				<LogoWrapper>
+				<LogoWrapper onClick={() => navigate('/')}>
 					<LogoSVG />
 					<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 				</LogoWrapper>

@@ -26,7 +26,7 @@ export const Title = styled.h3`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 1.625rem;
+	font-size: 1.875rem;
 	letter-spacing: -0.02em;
 	color: #495057;
 	padding-left: 6%;
@@ -36,9 +36,9 @@ export const SubTitle = styled.h4`
 	height: 1rem;
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 500;
-	font-size: 1.125rem;
-	color: #858585;
+	font-weight: 600;
+	font-size: 1.25rem;
+	color: #495057;
 `;
 
 export const Amount = styled.h5`

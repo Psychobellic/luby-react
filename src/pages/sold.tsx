@@ -50,9 +50,9 @@ export default function Sold() {
 		<>
 			<SoldWrapper>
 				<NavWrapper>
-					<LogoWrapper>
+					<LogoWrapper onClick={() => navigate('/')}>
 						<LogoSVG />
-						<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
+						<LogoText>AutoLuby</LogoText>
 					</LogoWrapper>
 					<Btn>
 						<Text onClick={() => navigate('/')}>Sair</Text>

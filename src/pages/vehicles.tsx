@@ -50,7 +50,7 @@ function Vehicles() {
 		<>
 			<VehiclesWrapper>
 				<NavWrapper>
-					<LogoWrapper>
+					<LogoWrapper onClick={() => navigate('/')}>
 						<LogoSVG />
 						<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 					</LogoWrapper>

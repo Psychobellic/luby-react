@@ -54,22 +54,25 @@ export const Title = styled.h1`
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 1.75rem;
+	font-size: 1.875rem;
 	color: #495057;
 	align-items: center;
 	line-height: 120%;
+	padding-left: 10vw;
 `;
 
 export const SubTitle = styled.h2`
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 500;
-	font-size: 1.125rem;
+	font-weight: 600;
+	font-size: 1.25rem;
 	line-height: 1.6875rem;
 	display: flex;
 	align-items: center;
 	letter-spacing: -0.02em;
-	color: #858585;
+	color: #495057;
+	margin-left: 10vw;
+	margin-right: -5vw;
 `;
 
 export const Paragraph = styled.p`
@@ -127,14 +130,13 @@ export const TableHeader = styled.th`
 	flex-direction: row;
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 600;
-	font-size: 1rem;
-	color: #495057;
+	font-weight: bold;
+	font-size: 0.8125rem;
+	color: #858585;
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-	min-width: 27.5%;
-	max-width: 27.5%;
+	width: 11vw;
 `;
 
 const handleDisplay = (state: string) => {
@@ -183,14 +185,13 @@ const handleBgType = (state: any) => {
 export const TableDataStyled = styled.td<{ state: string }>`
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 600;
-	font-size: 0.75rem;
-	color: #a2a2a2;
+	font-weight: 500;
+	font-size: 0.9rem;
+	color: #495057;
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-	min-width: 11%;
-	max-width: 11%;
+	width: 11vw;
 	border-radius: 3px;
 	background: ${({ state }) => handleBgType(state)};
 	color: ${({ state }) => handleColorType(state)};
@@ -199,14 +200,13 @@ export const TableDataStyled = styled.td<{ state: string }>`
 export const TableData = styled.td`
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 600;
-	font-size: 0.75rem;
-	color: #a2a2a2;
+	font-weight: 500;
+	font-size: 0.9rem;
+	color: #495057;
 	line-height: 120%;
 	padding: 10px;
 	height: auto;
-	min-width: 11%;
-	max-width: 11%;
+	width: 11vw;
 `;
 
 export const SearchInput = styled.input`

@@ -15,7 +15,7 @@ function Dashboard(){
   return (
 		<>
 			<NavWrapper>
-				<LogoWrapper>
+				<LogoWrapper onClick={() => navigate('/')}>
 					<LogoSVG />
 					<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 				</LogoWrapper>
