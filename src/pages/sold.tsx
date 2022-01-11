@@ -44,34 +44,6 @@ export default function Sold() {
 			});
 	}, []);
 
-	fetchedData ? (
-		fetchedData.vehicles.map((vehicle: any, index: number) => {
-			if (vehicle.status === 'Vendido' || 'Reservado') {
-				return (
-					<TableRow key={index}>
-						<TableData>{vehicle.brand}</TableData>
-						<TableData>{vehicle.model}</TableData>
-						<TableData>{vehicle.yer}</TableData>
-						<TableData>{vehicle.km}</TableData>
-						<TableData>{vehicle.color}</TableData>
-						<TableDataStyled state={vehicle.status}>
-							{vehicle.status}
-						</TableDataStyled>
-						<TableData>{vehicle.chassi}</TableData>
-						<TableData>
-							{Intl.NumberFormat('pt-BR', {
-								style: 'currency',
-								currency: 'BRL',
-							}).format(vehicle.value)}
-						</TableData>
-					</TableRow>
-				);
-			}
-		})
-	) : (
-		<Title>Unauthorized access</Title>
-	);
-
 	return (
 		<>
 			<SoldWrapper>
@@ -104,7 +76,7 @@ export default function Sold() {
 						</ListHeader>
 						<Table>
 							<Headers>
-								<TableRow>
+								<TableRow state={'none'}>
 									<TableHeader>Marca</TableHeader>
 									<TableHeader>Modelo</TableHeader>
 									<TableHeader>Ano</TableHeader>
@@ -115,31 +87,33 @@ export default function Sold() {
 									<TableHeader>Valor</TableHeader>
 								</TableRow>
 							</Headers>
-							{fetchedData ? (
-								fetchedData.vehicles.map((vehicle: any, index: number) => {
-									return (
-										<TableRow key={index}>
-											<TableData>{vehicle.brand}</TableData>
-											<TableData>{vehicle.model}</TableData>
-											<TableData>{vehicle.yer}</TableData>
-											<TableData>{vehicle.km}</TableData>
-											<TableData>{vehicle.color}</TableData>
-											<TableDataStyled state={vehicle.status}>
-												{vehicle.status}
-											</TableDataStyled>
-											<TableData>{vehicle.chassi}</TableData>
-											<TableData>
-												{Intl.NumberFormat('pt-BR', {
-													style: 'currency',
-													currency: 'BRL',
-												}).format(vehicle.value)}
-											</TableData>
-										</TableRow>
-									);
-								})
-							) : (
-								<Title>Unauthorized access</Title>
-							)}
+							<tbody>
+								{fetchedData ? (
+									fetchedData.vehicles.map((vehicle: any, index: number) => {
+										return (
+											<TableRow key={index} state={vehicle.status}>
+												<TableData>{vehicle.brand}</TableData>
+												<TableData>{vehicle.model}</TableData>
+												<TableData>{vehicle.yer}</TableData>
+												<TableData>{vehicle.km}</TableData>
+												<TableData>{vehicle.color}</TableData>
+												<TableDataStyled state={vehicle.status}>
+													{vehicle.status}
+												</TableDataStyled>
+												<TableData>{vehicle.chassi}</TableData>
+												<TableData>
+													{Intl.NumberFormat('pt-BR', {
+														style: 'currency',
+														currency: 'BRL',
+													}).format(vehicle.value)}
+												</TableData>
+											</TableRow>
+										);
+									})
+								) : (
+									<Title>Unauthorized access</Title>
+								)}
+							</tbody>
 						</Table>
 					</BodySold>
 				</BodyWrapper>

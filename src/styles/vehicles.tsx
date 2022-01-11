@@ -145,7 +145,6 @@ export const TableHeader = styled.th`
 export const TableRow = styled.tr`
 	display: flex;
 	flex-direction: row;
-	min-width: 100%;
 	margin: 2px;
 `;
 
@@ -181,7 +180,7 @@ const handleBgType = (state: any) => {
 		case 'Reservado':
 			return 'rgba(250, 193, 47, 0.2)';
 		case 'Disponível':
-			return 'background: rgba(52, 195, 143, 0.2);';
+			return 'rgba(52, 195, 143, 0.2);';
 		default:
 			return '#a2a2a2';
 	}

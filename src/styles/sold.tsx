@@ -137,11 +137,22 @@ export const TableHeader = styled.th`
 	max-width: 27.5%;
 `;
 
-export const TableRow = styled.tr`
+const handleDisplay = (state: string) => {
+	switch (state) {
+		case 'Disponível':
+			return 'none';
+		case 'none':
+			return 'visible';
+		default:
+			return 'visible';
+	}
+};
+
+export const TableRow = styled.tr<{ state: string }>`
 	display: flex;
 	flex-direction: row;
-	min-width: 100%;
 	margin: 2px;
+	display: ${({ state }) => handleDisplay(state)};
 `;
 
 const handleColorType = (state: any) => {
@@ -159,11 +170,11 @@ const handleColorType = (state: any) => {
 const handleBgType = (state: any) => {
 	switch (state) {
 		case 'Vendido':
-			return 'rgba(245, 74, 72, 0.2);';
+			return 'rgba(245, 74, 72, 0.2)';
 		case 'Reservado':
 			return 'rgba(250, 193, 47, 0.2)';
 		case 'Disponível':
-			return 'background: rgba(52, 195, 143, 0.2);';
+			return 'rgba(52, 195, 143, 0.2)';
 		default:
 			return '#a2a2a2';
 	}
