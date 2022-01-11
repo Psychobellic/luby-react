@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	EmployeeWrapper,
@@ -41,19 +41,6 @@ function Employees() {
 	const fetchedData = useSelector((state: any) => state.store.fetchedEmployees);
 	const token = store.fetchedData.token;
 
- 	// Pagination stuff //
-  const [tableRange, setTableRange] = useState([]);
-	const [slice, setSlice] = useState([]);
-	const calculateRange = (employees: any, perPage: number) => {
-				const range = [];
-				const num = Math.ceil(employees.length / perPage);
-				let i = 1;
-				for (let i = 1; i <= num; i++) {
-					range.push(i);
-				}
-			return range;
-		};
-
 	useEffect(()=>{
 			getEmployees(token)
 				.then((res: any) => dispatch(setEmployees(res)))
@@ -85,9 +72,6 @@ function Employees() {
 							<Paragraph>{() => fetchedData.perPage}</Paragraph>
 							<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
 						</>
-
-						{/* <PaginationStuff /> */}
-
 						<SearchWrapper>
 							<SearchInput />
 							<Button type="submit">
@@ -105,7 +89,6 @@ function Employees() {
 								<TableHeader>BIO</TableHeader>
 							</Headers>
 						</TableRow>
-
 						{fetchedData ? (
 							fetchedData.employees.map((employee: any, index: number) => {
 								return (
