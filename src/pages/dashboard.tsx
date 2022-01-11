@@ -17,7 +17,7 @@ function Dashboard(){
 			<NavWrapper>
 				<LogoWrapper>
 					<LogoSVG />
-					<LogoText>AutoLuby</LogoText>
+					<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 				</LogoWrapper>
 				<SearchWrapper>
 					<SearchInput />
@@ -26,7 +26,7 @@ function Dashboard(){
 					</Button>
 				</SearchWrapper>
 				<Btn>
-					<Text>Sair</Text>
+					<Text onClick={() => navigate('/')}>Sair</Text>
 					<Out />
 				</Btn>
 			</NavWrapper>
@@ -44,20 +44,20 @@ function Dashboard(){
 							/>
 						</div>
 						<div onClick={() => navigate('/vehicles')}>
-						<Card
-							title={'Listagem geral de veículos'}
-							subTitle={'Listagem de veículos de toda a empresa'}
-							amount={list}
-							image="chrysler.svg"
-						/>
+							<Card
+								title={'Listagem geral de veículos'}
+								subTitle={'Listagem de veículos de toda a empresa'}
+								amount={list}
+								image="chrysler.svg"
+							/>
 						</div>
 						<div onClick={() => navigate('/employees')}>
-						<Card
-							title={'Funcionários da empresa'}
-							subTitle={'Listagem de todos os funcionários da empresa'}
-							amount={employees}
-							image="employee.svg"
-						/>
+							<Card
+								title={'Funcionários da empresa'}
+								subTitle={'Listagem de todos os funcionários da empresa'}
+								amount={employees}
+								image="employee.svg"
+							/>
 						</div>
 					</CardsWrapper>
 				</Body>

@@ -28,12 +28,14 @@ import LogoSVG from '../img/logo';
 import Out from '../img/out';
 import { getVehicles } from '../api/fetch';
 import { setVehicles } from '../redux/slice';
+import { useNavigate } from 'react-router';
 
 export default function Sold() {
 	const dispatch = useDispatch();
 	const store = useSelector((state: any) => state.store);
 	const fetchedData = useSelector((state: any) => state.store.fetchedVehicles);
 	const token = store.fetchedData.token;
+	let navigate = useNavigate();
 
 	useEffect(() => {
 		getVehicles(token)
@@ -50,10 +52,10 @@ export default function Sold() {
 				<NavWrapper>
 					<LogoWrapper>
 						<LogoSVG />
-						<LogoText>AutoLuby</LogoText>
+						<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 					</LogoWrapper>
 					<Btn>
-						<Text>Sair</Text>
+						<Text onClick={() => navigate('/')}>Sair</Text>
 						<Out />
 					</Btn>
 				</NavWrapper>

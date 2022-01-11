@@ -27,6 +27,7 @@ import LogoSVG from '../img/logo';
 import Out from '../img/out';
 import { setEmployees } from '../redux/slice';
 import { getEmployees } from '../api/fetch';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
 	perPage: number,
@@ -40,6 +41,7 @@ function Employees() {
 	const store = useSelector((state: any) => state.store);
 	const fetchedData = useSelector((state: any) => state.store.fetchedEmployees);
 	const token = store.fetchedData.token;
+	let navigate = useNavigate();
 
 	useEffect(()=>{
 			getEmployees(token)
@@ -55,10 +57,10 @@ function Employees() {
 			<NavWrapper>
 				<LogoWrapper>
 					<LogoSVG />
-					<LogoText>AutoLuby</LogoText>
+					<LogoText onClick={() => navigate('/')}>AutoLuby</LogoText>
 				</LogoWrapper>
 				<Btn>
-					<Text>Sair</Text>
+					<Text onClick={() => navigate('/')}>Sair</Text>
 					<Out />
 				</Btn>
 			</NavWrapper>

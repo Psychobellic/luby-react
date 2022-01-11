@@ -58,13 +58,11 @@ export const Image = styled.img`
 	height: 13rem;
 `;
 
-
 export const CardsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: auto;
 `;
-
 
 export const BodyWrapper = styled.div`
 	width: 100vw;
@@ -99,7 +97,6 @@ export const Menu = styled.h2`
 	letter-spacing: -0.02em;
 	color: #858585;
 `;
-
 
 export const LogoWrapper = styled.div`
 	width: 14vw;
