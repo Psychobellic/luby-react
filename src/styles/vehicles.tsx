@@ -146,6 +146,7 @@ export const TableRow = styled.tr`
 	display: flex;
 	flex-direction: row;
 	min-width: 100%;
+	margin: 2px;
 `;
 
 export const TableData = styled.td`
@@ -197,6 +198,7 @@ export const TableDataStyled = styled.td<{ state: string }>`
 	height: auto;
 	min-width: 11%;
 	max-width: 11%;
+	border-radius: 3px;
 	background: ${({ state }) => handleBgType(state)};
 	color: ${({ state }) => handleColorType(state)};
 `; 
