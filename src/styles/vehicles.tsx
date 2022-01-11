@@ -123,7 +123,7 @@ export const ListHeader = styled.div`
 	margin-right: 5%;
 `;
 
-export const Headers = styled.div`
+export const Headers = styled.thead`
 	display: flex;
 	flex-direction: row;
 `;

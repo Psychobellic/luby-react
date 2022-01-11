@@ -83,8 +83,8 @@ function Vehicles() {
 							</SearchWrapper>
 						</ListHeader>
 						<Table>
-							<TableRow>
-								<Headers>
+							<Headers>
+								<TableRow>
 									<TableHeader>Marca</TableHeader>
 									<TableHeader>Modelo</TableHeader>
 									<TableHeader>Ano</TableHeader>
@@ -93,8 +93,8 @@ function Vehicles() {
 									<TableHeader>Status</TableHeader>
 									<TableHeader>Chassi</TableHeader>
 									<TableHeader>Valor</TableHeader>
-								</Headers>
-							</TableRow>
+								</TableRow>
+							</Headers>
 							{fetchedData ? (
 								fetchedData.vehicles.map((vehicle: any, index: number) => {
 									return (
