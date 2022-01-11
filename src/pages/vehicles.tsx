@@ -6,6 +6,7 @@ import {
 	TableRow,
 	ListHeader,
 	TableData,
+	TableDataStyled,
 	Paragraph,
 	TableHeader,
 	Headers,
@@ -104,7 +105,9 @@ function Vehicles() {
 											<TableData>{vehicle.yer}</TableData>
 											<TableData>{vehicle.km}</TableData>
 											<TableData>{vehicle.color}</TableData>
-											<TableData>{vehicle.status}</TableData>
+											<TableDataStyled state={vehicle.status}>
+												{vehicle.status}
+											</TableDataStyled>
 											<TableData>{vehicle.chassi}</TableData>
 											<TableData>
 												{Intl.NumberFormat('pt-BR', {

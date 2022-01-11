@@ -161,6 +161,46 @@ export const TableData = styled.td`
 	max-width: 11%;
 `;
 
+const handleColorType = (state: any) => {
+	switch (state) {
+		case 'Vendido':
+			return '#F54A48';
+		case 'Reservado':
+			return '#FAC12F';
+		case 'Disponível':
+			return '#34C38F';
+		default:
+			return '#495057';
+	} 
+};
+const handleBgType = (state: any) => {
+	switch (state) {
+		case 'Vendido':
+			return 'rgba(245, 74, 72, 0.2);';
+		case 'Reservado':
+			return 'rgba(250, 193, 47, 0.2)';
+		case 'Disponível':
+			return 'background: rgba(52, 195, 143, 0.2);';
+		default:
+			return '#a2a2a2';
+	}
+};
+
+export const TableDataStyled = styled.td<{ state: string }>`
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 0.75rem;
+	color: #a2a2a2;
+	line-height: 120%;
+	padding: 10px;
+	height: auto;
+	min-width: 11%;
+	max-width: 11%;
+	background: ${({ state }) => handleBgType(state)};
+	color: ${({ state }) => handleColorType(state)};
+`; 
+
 export const SearchInput = styled.input`
 	width: 26.875rem;
 	border-color: transparent;
@@ -195,6 +235,3 @@ export const Btn = styled.button`
 	justify-content: space-between;
 	border: 0;
 `;
-
-
-
