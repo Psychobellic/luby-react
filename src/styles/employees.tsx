@@ -139,13 +139,15 @@ export const TableHeader = styled.th`
 export const TableRow = styled.tr`
 	display: flex;
 	flex-direction: row;
+	padding-bottom: 10px;
+	padding-top: 10px;
 `;
 
 export const TableData = styled.td`
 	font-family: Poppins;
 	font-style: normal;
-	font-weight: 600;
-	font-size: 0.75rem;
+	font-weight: 500;
+	font-size: 0.9rem;
 	color: #495057;
 	line-height: 120%;
 	padding: 10px;

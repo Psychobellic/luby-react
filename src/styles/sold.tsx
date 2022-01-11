@@ -155,6 +155,8 @@ export const TableRow = styled.tr<{ state: string }>`
 	flex-direction: row;
 	margin: 2px;
 	display: ${({ state }) => handleDisplay(state)};
+	padding-bottom: 10px;
+	padding-top: 10px;
 `;
 
 const handleColorType = (state: any) => {
