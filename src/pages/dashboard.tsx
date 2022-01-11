@@ -35,7 +35,7 @@ function Dashboard(){
 					<Greeting>Bem-vindo, Carlos</Greeting>
 					<Menu>Menu</Menu>
 					<CardsWrapper>
-						<div onClick={() => navigate('/history')}>
+						<div onClick={() => navigate('/sold')}>
 							<Card
 								title={'Veículos reservados e vendidos'}
 								subTitle={'Veículos reservados e vendidos por você'}

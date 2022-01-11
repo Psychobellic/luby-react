@@ -29,13 +29,6 @@ import Out from '../img/out';
 import { getVehicles } from '../api/fetch';
 import { setVehicles } from '../redux/slice';
 
-interface Props {
-	perPage: number;
-	currentPage: number;
-	totalRecords: number;
-	employees: Array<Object>;
-}
-
 function Vehicles() {
 	const dispatch = useDispatch();
 	const store = useSelector((state: any) => state.store);
@@ -74,8 +67,6 @@ function Vehicles() {
 								<Paragraph>{() => fetchedData.perPage}</Paragraph>
 								<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
 							</>
-							{/* <PaginationStuff /> */}
-
 							<SearchWrapper>
 								<SearchInput />
 								<Button type="submit">

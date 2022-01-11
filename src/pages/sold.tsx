@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	SoldWrapper,
@@ -5,6 +6,7 @@ import {
 	TableRow,
 	ListHeader,
 	TableData,
+	TableDataStyled,
 	Paragraph,
 	TableHeader,
 	Headers,
@@ -24,12 +26,51 @@ import {
 import SearchIcon from '../img/searchIcon';
 import LogoSVG from '../img/logo';
 import Out from '../img/out';
+import { getVehicles } from '../api/fetch';
+import { setVehicles } from '../redux/slice';
 
 export default function Sold() {
 	const dispatch = useDispatch();
 	const store = useSelector((state: any) => state.store);
 	const fetchedData = useSelector((state: any) => state.store.fetchedVehicles);
 	const token = store.fetchedData.token;
+
+	useEffect(() => {
+		getVehicles(token)
+			.then((res: any) => dispatch(setVehicles(res)))
+			.catch((error: Error) => {
+				console.log(error);
+				return <h1>Error...</h1>;
+			});
+	}, []);
+
+	fetchedData ? (
+		fetchedData.vehicles.map((vehicle: any, index: number) => {
+			if (vehicle.status === 'Vendido' || 'Reservado') {
+				return (
+					<TableRow key={index}>
+						<TableData>{vehicle.brand}</TableData>
+						<TableData>{vehicle.model}</TableData>
+						<TableData>{vehicle.yer}</TableData>
+						<TableData>{vehicle.km}</TableData>
+						<TableData>{vehicle.color}</TableData>
+						<TableDataStyled state={vehicle.status}>
+							{vehicle.status}
+						</TableDataStyled>
+						<TableData>{vehicle.chassi}</TableData>
+						<TableData>
+							{Intl.NumberFormat('pt-BR', {
+								style: 'currency',
+								currency: 'BRL',
+							}).format(vehicle.value)}
+						</TableData>
+					</TableRow>
+				);
+			}
+		})
+	) : (
+		<Title>Unauthorized access</Title>
+	);
 
 	return (
 		<>
@@ -46,16 +87,14 @@ export default function Sold() {
 				</NavWrapper>
 				<BodyWrapper>
 					<BodySold>
-						<Title>Todos Veículos</Title>
+						<Title>Seus Veículos</Title>
 						<ListHeader>
 							<>
-								<SubTitle>Listagem geral de veículos</SubTitle>
+								<SubTitle>Listagem de veículos reservados e vendidos</SubTitle>
 								<Paragraph>{() => fetchedData.currentPage}</Paragraph>
 								<Paragraph>{() => fetchedData.perPage}</Paragraph>
 								<Paragraph>{() => fetchedData.totalRecords}</Paragraph>
 							</>
-							{/* <PaginationStuff /> */}
-
 							<SearchWrapper>
 								<SearchInput />
 								<Button type="submit">
@@ -64,8 +103,8 @@ export default function Sold() {
 							</SearchWrapper>
 						</ListHeader>
 						<Table>
-							<TableRow>
-								<Headers>
+							<Headers>
+								<TableRow>
 									<TableHeader>Marca</TableHeader>
 									<TableHeader>Modelo</TableHeader>
 									<TableHeader>Ano</TableHeader>
@@ -74,8 +113,8 @@ export default function Sold() {
 									<TableHeader>Status</TableHeader>
 									<TableHeader>Chassi</TableHeader>
 									<TableHeader>Valor</TableHeader>
-								</Headers>
-							</TableRow>
+								</TableRow>
+							</Headers>
 							{fetchedData ? (
 								fetchedData.vehicles.map((vehicle: any, index: number) => {
 									return (
@@ -85,7 +124,9 @@ export default function Sold() {
 											<TableData>{vehicle.yer}</TableData>
 											<TableData>{vehicle.km}</TableData>
 											<TableData>{vehicle.color}</TableData>
-											<TableData>{vehicle.status}</TableData>
+											<TableDataStyled state={vehicle.status}>
+												{vehicle.status}
+											</TableDataStyled>
 											<TableData>{vehicle.chassi}</TableData>
 											<TableData>
 												{Intl.NumberFormat('pt-BR', {
